@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+python-telegram-bot = "*"
+pillow = "*"
+djangorestframework = "*"
+django-jazzmin = "*"
+django-cors-headers = "*"
+celery = "*"
+django-celery-beat = "*"
+redis = "*"
+python-decouple = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+
+[requires]
+python_version = "3.8"
