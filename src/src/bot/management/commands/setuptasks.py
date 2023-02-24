@@ -3,8 +3,6 @@ from django.core.management import BaseCommand
 from django.utils import timezone
 from django_celery_beat.models import CrontabSchedule, PeriodicTask
 
-from src.bot.modules.poll.tasks import poll
-
 
 class Command(BaseCommand):
     """Команда для создания периодческих задач."""
@@ -49,7 +47,7 @@ class Command(BaseCommand):
 
         _ = PeriodicTask.objects.get_or_create(
             crontab=every_five_min_cron,
-            name="Создание голосования",
-            task="src.src.bot.modules.poll.tasks.poll",
-            queue="default"
+            name="Создание рассылки",
+            task="src.events.tasks.send_events",
+            queue="default",
         )

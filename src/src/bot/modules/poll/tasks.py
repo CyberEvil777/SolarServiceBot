@@ -1,9 +1,4 @@
 from django.conf import settings
-from telegram import (
-    ReplyKeyboardRemove,
-    Update,
-)
-from telegram.ext import ContextTypes
 
 from src import celery_app
 from src.bot.core.telegram import bot

@@ -11,7 +11,8 @@ def user_directory_path(instance, filename):
     """Функция выдает путь к загруженному файлу"""
     return f"goods/{instance.title}/{filename}"
 
-def image_as_base64(image_file, format='png'):
+
+def image_as_base64(image_file, format="png"):
     """
     :param `image_file` for the complete path of image.
     :param `format` is format for image, eg: `png` or `jpg`.
@@ -19,8 +20,8 @@ def image_as_base64(image_file, format='png'):
     # if not os.path.isfile(image_file):
     #     return None
 
-    encoded_string = ''
-    with open(image_file, 'rb') as img_f:
+    encoded_string = ""
+    with open(image_file, "rb") as img_f:
         encoded_string = base64.b64encode(img_f.read())
     return f'data:image/{format};base64,{encoded_string.decode("utf-8")}'
 

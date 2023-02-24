@@ -36,6 +36,12 @@ class User(AbstractBaseUser):
         default=False,
     )
 
+    is_moderator = models.BooleanField(
+        verbose_name="Модератор",
+        help_text="Может обогощать сообщения",
+        default=False,
+    )
+
     objects = CustomUserManager()
 
     def __str__(self):

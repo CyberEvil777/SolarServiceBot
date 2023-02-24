@@ -10,9 +10,7 @@ class CustomRecordsFilter(admin.SimpleListFilter):
     TODAY = "Заказы на сегодня"
 
     def lookups(self, request, model_admin):
-        return (
-            (self.TODAY, self.TODAY),
-        )
+        return ((self.TODAY, self.TODAY),)
 
     def queryset(self, request, queryset):
         if not self.value():
@@ -32,10 +30,12 @@ class OrderAdmin(admin.ModelAdmin):
         "date_created",
         "user",
     )
-    readonly_fields = ("date_created", "user",)
+    readonly_fields = (
+        "date_created",
+        "user",
+    )
 
-    list_filter = (
-        CustomRecordsFilter,)
+    list_filter = (CustomRecordsFilter,)
 
     fieldsets = (
         (

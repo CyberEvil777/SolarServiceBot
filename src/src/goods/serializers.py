@@ -4,7 +4,6 @@ from src.goods.models import Goods
 
 
 class GoodsSerializer(serializers.ModelSerializer):
-
     photo = serializers.SerializerMethodField("convert_photo_base64")
 
     def convert_photo_base64(self, obj):

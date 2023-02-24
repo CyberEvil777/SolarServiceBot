@@ -8,13 +8,11 @@ from src.accounts.models import User
 class OrderAdmin(admin.ModelAdmin):
     """Админка для модели Заказ"""
 
-    list_display = (
-        "name",
-    )
+    list_display = ("name",)
     readonly_fields = (
-                    "username",
-                    "telegram_id",
-                    "date_joined",
+        "username",
+        "telegram_id",
+        "date_joined",
     )
     fieldsets = (
         (

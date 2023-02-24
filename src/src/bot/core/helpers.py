@@ -1,5 +1,6 @@
 from django.db import transaction
 from telegram import User as TelegramUser
+
 from src.accounts.models import User
 
 

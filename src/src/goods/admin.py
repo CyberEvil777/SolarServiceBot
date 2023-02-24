@@ -1,14 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-
-from src.goods.models import Goods
-
 from django_celery_beat.models import (
     ClockedSchedule,
     CrontabSchedule,
     IntervalSchedule,
     SolarSchedule,
 )
+
+from src.goods.models import Goods
 
 
 @admin.register(Goods)

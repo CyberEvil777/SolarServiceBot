@@ -1,8 +1,8 @@
 import os
 
 from celery import Celery
+from celery.schedules import crontab
 from kombu import Queue
-
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings.dev")
 

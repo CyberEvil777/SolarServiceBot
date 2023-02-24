@@ -18,7 +18,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-
 admin.site.site_header = "Solar"
 admin.site.site_title = "Solar"
 admin.site.index_title = ""

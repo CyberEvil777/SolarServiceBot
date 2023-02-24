@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("goods", "0006_remove_goods_order"),
         ("order", "0002_alter_order_user"),

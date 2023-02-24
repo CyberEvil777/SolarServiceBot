@@ -2,7 +2,6 @@ from django.core.management import BaseCommand
 from telegram import Update
 from telegram.ext import CallbackContext
 
-# from src.bot.constants.messages import COMMAND_DOES_NOT_EXIST
 from src.bot.core.logging import get_logger
 from src.bot.core.packages import PackagesLoader
 from src.bot.core.telegram import updater
@@ -27,6 +26,7 @@ class Command(BaseCommand):
             for item in [
                 "web_app",
                 "poll",
+                "view_message",
             ]
         )
 

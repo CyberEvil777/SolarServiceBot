@@ -1,13 +1,9 @@
 from telegram import ReplyKeyboardRemove, Update
-from telegram.ext import (
-    CommandHandler,
-    ContextTypes,
-    Filters,
-    MessageHandler,
-    PollAnswerHandler,
-)
+from telegram.ext import CallbackQueryHandler, ContextTypes
 
 from src.bot.core.telegram import dp
+from src.bot.modules.view_message.keyboards import get_keyboard_message
+from src.events.models import EventMessage
 from src.shop.models import Shop, WinnerShop
 
 
@@ -71,6 +67,21 @@ def receive_poll(update: Update, context: ContextTypes) -> None:
     )
 
 
-dp.add_handler(CommandHandler("poll", poll))
-dp.add_handler(MessageHandler(Filters.poll, receive_poll))
-dp.add_handler(PollAnswerHandler(receive_poll_answer))
+def show_message(update: Update, context: ContextTypes) -> None:
+    """Показывает или скрывает обогащенное сообщение"""
+    message_id = update.callback_query.message.message_id
+    messages = EventMessage.objects.filter(id_message=message_id)
+    message = messages.first()
+    if getattr(message, "is_full"):
+        update.callback_query.message.edit_text(
+            text=message.short_text, reply_markup=get_keyboard_message()
+        )
+        messages.update(is_full=False)
+    else:
+        update.callback_query.message.edit_text(
+            text=message.text, reply_markup=get_keyboard_message()
+        )
+        messages.update(is_full=True)
+
+
+dp.add_handler(CallbackQueryHandler(show_message, pattern="SHOW_OR_HINT"))
