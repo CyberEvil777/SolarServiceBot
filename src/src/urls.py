@@ -25,7 +25,6 @@ admin.site.site_url = None
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include("src.goods.urls")),
 ]
 
 if settings.DEBUG:

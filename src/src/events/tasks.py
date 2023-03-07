@@ -13,7 +13,7 @@ def send_events() -> None:
     for message in messages:
         message_response = bot.send_message(
             chat_id=settings.CHAT_ID,
-            text=message.text,
+            text=message.short_text,
             reply_markup=get_keyboard_message(),
         )
         message.id_message = message_response.message_id

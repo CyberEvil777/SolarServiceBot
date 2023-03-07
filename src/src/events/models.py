@@ -19,4 +19,4 @@ class EventMessage(models.Model):
 
     @property
     def short_text(self):
-        return self.text[::5]
+        return self.text[:5]

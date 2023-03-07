@@ -24,8 +24,6 @@ class Command(BaseCommand):
         PackagesLoader().load_packages(
             f"src.bot.modules.{item}"
             for item in [
-                "web_app",
-                "poll",
                 "view_message",
             ]
         )

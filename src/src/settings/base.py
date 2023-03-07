@@ -45,9 +45,6 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "src.accounts",
     "src.bot",
-    "src.goods",
-    "src.shop",
-    "src.order",
     "src.events",
 ]
 
