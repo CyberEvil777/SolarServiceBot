@@ -15,7 +15,22 @@ class EventMessage(models.Model):
     )
     is_full = models.BooleanField(default=False)
     is_sent = models.BooleanField(verbose_name="Отправлено", default=False)
-    # id_elasticsearch = models.CharField
+
+    rule_info = models.CharField(
+        verbose_name="Наименование инцидента", max_length=255, null=True, blank=True
+    )
+    keyfields = models.CharField(
+        verbose_name="Ключь с ElasticSearch", max_length=255, null=True, blank=True
+    )
+    rule_description = models.CharField(
+        verbose_name="Описание", max_length=255, null=True, blank=True
+    )
+    id_incident = models.CharField(
+        verbose_name="ID инцидента", max_length=255, null=True, blank=True
+    )
+    user_info = models.CharField(
+        verbose_name=" Информация о пользователе", max_length=255, null=True, blank=True
+    )
 
     @property
     def short_text(self):

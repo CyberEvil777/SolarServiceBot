@@ -142,12 +142,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "1946256696:AAEitJpw_fZMvSSukOyVCAZ3E_Z2GQGHEsE")
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://tourmaline-cupcake-966f19.netlify.app/",
-    "https://5c18-212-19-7-24.ngrok.io",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "https://tourmaline-cupcake-966f19.netlify.app/",
+#     "https://5c18-212-19-7-24.ngrok.io",
+# ]
 
 REDIS_HOST = config("REDIS_HOST", default="localhost")
 REDIS_PORT = config("REDIS_PORT", default=6379, cast=int)
@@ -159,4 +159,4 @@ CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/3"
 CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/4"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-CHAT_ID = -1001539144581
+CHAT_ID = config("CHAT_ID", default=None)

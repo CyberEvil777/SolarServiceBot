@@ -3,8 +3,9 @@ from telegram.ext import CallbackQueryHandler, ContextTypes
 
 from src.bot.core.telegram import dp
 from src.bot.modules.view_message.keyboards import get_keyboard_message
+from src.events.logic import wazuh_hight_level_alert, wazuh_hight_serializer
 from src.events.models import EventMessage
-
+from src.events.serializers import EventListSerializer, EventSerializer
 
 # def poll(update: Update, context: ContextTypes) -> None:
 #     """Создание голосования"""
@@ -71,6 +72,7 @@ def show_message(update: Update, context: ContextTypes) -> None:
     message_id = update.callback_query.message.message_id
     messages = EventMessage.objects.filter(id_message=message_id)
     message = messages.first()
+    print(wazuh_hight_serializer)
     if getattr(message, "is_full"):
         update.callback_query.message.edit_text(
             text=message.short_text, reply_markup=get_keyboard_message()
