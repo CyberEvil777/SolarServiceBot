@@ -7,7 +7,7 @@ from django_celery_beat.models import (
     SolarSchedule,
 )
 
-from src.events.models import EventMessage
+from src.events.models import EventMessage, Feature
 
 
 # Register your models here.
@@ -15,16 +15,40 @@ from src.events.models import EventMessage
 class EventMessageAdmin(admin.ModelAdmin):
     """Админка для модели EventMessage"""
 
-    list_display = ("text", "is_sent", "id_message")
+    list_display = ("is_sent", "id_message")
 
     fieldsets = (
         (
             None,
             {
                 "fields": (
-                    "text",
+                    "rule_info",
+                    "keyfields",
+                    "rule_description",
+                    "id_incident",
+                    "user_info",
                     "is_sent",
                     "is_full",
+                )
+            },
+        ),
+    )
+
+
+@admin.register(Feature)
+class EventMessageAdmin(admin.ModelAdmin):
+    """Админка для модели EventMessage"""
+
+    list_display = ("id_incident", "text_button")
+
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "id_incident",
+                    "text_button",
+                    "script",
                 )
             },
         ),

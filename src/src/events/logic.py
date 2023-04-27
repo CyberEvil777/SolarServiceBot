@@ -2,7 +2,7 @@ import json
 from itertools import islice
 
 from src.events.models import EventMessage
-from src.events.serializers import EventSerializer, EventListSerializer
+from src.events.serializers import EventListSerializer, EventSerializer
 
 # Opening JSON file
 file = open("src/events/wazuh_hight_level_alert_2.json")
@@ -26,7 +26,7 @@ wazuh_hight_serializer = EventSerializer(
 
 def filter_events(raw_wazuh_hight_level_alerts):
     """Фильтруем события, которые уже сохранены в бд"""
-    events = EventMessage.objects.all().value_list("keyfields", flat=True)
+    events = EventMessage.objects.all().values_list("keyfields", flat=True)
 
     return list(
         filter(
