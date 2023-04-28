@@ -149,7 +149,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "1946256696:AAEitJpw_fZMvSSukOyVCAZ3E_Z2GQGHE
 #     "https://5c18-212-19-7-24.ngrok.io",
 # ]
 
-REDIS_HOST = config("REDIS_HOST", default="localhost")
+REDIS_HOST = config("REDIS_HOST", default="127.0.0.1")
 REDIS_PORT = config("REDIS_PORT", default=6379, cast=int)
 
 # REDIS_HOST = "localhost"
@@ -157,6 +157,9 @@ REDIS_PORT = config("REDIS_PORT", default=6379, cast=int)
 
 CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/3"
 CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/4"
+
+CELERY_APPS = ["src.src.events.tasks"]
+
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 CHAT_ID = config("CHAT_ID", default=None)

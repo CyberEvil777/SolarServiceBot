@@ -1,11 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-from django_celery_beat.models import (
-    ClockedSchedule,
-    CrontabSchedule,
-    IntervalSchedule,
-    SolarSchedule,
-)
+from django_celery_beat.models import (ClockedSchedule, CrontabSchedule,
+                                       IntervalSchedule, SolarSchedule)
 
 from src.events.models import EventMessage, Feature
 

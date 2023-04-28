@@ -1,3 +1,6 @@
+import subprocess
+import sys
+
 from django.db import transaction
 from telegram import User as TelegramUser
 
@@ -24,3 +27,7 @@ def get_or_create_user(telegram_user: TelegramUser) -> None:
             )
         user.save()
     return user
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pipenv", "install", package])

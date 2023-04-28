@@ -1,7 +1,8 @@
 import json
 
 from telegram import KeyboardButton, ReplyKeyboardMarkup, Update, WebAppInfo
-from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
+from telegram.ext import (CallbackContext, CommandHandler, Filters,
+                          MessageHandler)
 
 from src.bot.core.helpers import get_or_create_user
 from src.bot.core.telegram import dp

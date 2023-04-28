@@ -1,11 +1,6 @@
 from telegram import ReplyKeyboardRemove, Update
-from telegram.ext import (
-    CommandHandler,
-    ContextTypes,
-    Filters,
-    MessageHandler,
-    PollAnswerHandler,
-)
+from telegram.ext import (CommandHandler, ContextTypes, Filters,
+                          MessageHandler, PollAnswerHandler)
 
 from src.bot.core.telegram import dp
 from src.shop.models import Shop, WinnerShop
