@@ -15,6 +15,7 @@ django-celery-beat = "*"
 redis = "*"
 python-decouple = "*"
 requests = "*"
+pysocks = "*"
 
 [dev-packages]
 black = "*"

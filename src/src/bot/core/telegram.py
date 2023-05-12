@@ -13,6 +13,28 @@ class SingletonUpdater(Updater, metaclass=MetaSingleton):
     pass
 
 
-bot: Bot = Bot(token=settings.BOT_TOKEN, request=Request(con_pool_size=8))
-updater: SingletonUpdater = SingletonUpdater(bot=bot)
+REQUEST_KWARGS = {
+    "proxy_url": "socks5://185.61.38.128:1080/",
+    # Optional, if you need authentication:
+    "urllib3_proxy_kwargs": {
+        "assert_hostname": "False",
+        "cert_reqs": "CERT_NONE"
+        # 'username': 'user',
+        # 'password': 'password'
+    },
+}
+bot: Bot = Bot(
+    token=settings.BOT_TOKEN,
+    request=Request(
+        con_pool_size=8,
+        proxy_url="socks5://185.61.38.128:1080/",
+        urllib3_proxy_kwargs={
+            "assert_hostname": "False",
+            "cert_reqs": "CERT_NONE"
+            # 'username': 'user',
+            # 'password': 'password'
+        },
+    ),
+)
+updater: SingletonUpdater = SingletonUpdater(bot=bot, request_kwargs=REQUEST_KWARGS)
 dp: Dispatcher = updater.dispatcher

@@ -163,3 +163,13 @@ CELERY_APPS = ["src.src.events.tasks"]
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 CHAT_ID = config("CHAT_ID", default=None)
+
+URL_WAZUH = config("URL_WAZUH", default=None)
+
+FILE_WAZUH_ALERT = config(
+    "FILE_WAZUH_ALERT", default="src/events/wazuh_hight_level_alert_2.json"
+)
+
+ELASTIC_USER = config("ELASTIC_USER", default=None)
+ELASTIC_PASS = config("ELASTIC_PASS", default=None)
+ELASTIC_URL = config("ELASTIC_URL", default=None)

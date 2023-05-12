@@ -11,7 +11,7 @@ from src.events.models import EventMessage, Feature
 class EventMessageAdmin(admin.ModelAdmin):
     """Админка для модели EventMessage"""
 
-    list_display = ("is_sent", "id_message")
+    list_display = ("is_sent", "id_message", "user_info")
 
     fieldsets = (
         (

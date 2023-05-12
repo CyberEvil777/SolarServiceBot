@@ -1,11 +1,16 @@
 import subprocess
+import time
 
 from django.conf import settings
+from telegram.error import BadRequest, Unauthorized
 
 from src import celery_app
 from src.bot.core.helpers import install
 from src.bot.core.telegram import bot
 from src.bot.modules.view_message.keyboards import get_keyboard_message
+from src.core.mail import mail_send
+from src.events.client import ElasticSearchClient
+# from src.events.logic import load_events, wazuh_hight_serializer
 from src.events.models import EventMessage, Feature
 
 
@@ -14,15 +19,29 @@ def send_events() -> None:
     """Создание голосования"""
     # load_events(wazuh_hight_serializer)
     messages = EventMessage.objects.filter(is_sent=False)
+    messages_sent = 0
     for message in messages:
-        message_response = bot.send_message(
-            chat_id=settings.CHAT_ID,
-            text=message.short_text,
-            reply_markup=get_keyboard_message(message),
-        )
-        message.id_message = message_response.message_id
-        message.is_sent = True
-        message.save(update_fields=["id_message", "is_sent"])
+        try:
+            message_response = bot.send_message(
+                chat_id=settings.CHAT_ID,
+                text=message.short_text,
+                reply_markup=get_keyboard_message(message),
+            )
+            messages_sent += 1
+            if ((message.user_info).split(","))[0]:
+                mail_send(
+                    IncID=message.id_incident,
+                    message=message.full_text,
+                    receiver_email=((message.user_info).split(","))[0],
+                )
+            message.id_message = message_response.message_id
+            message.is_sent = True
+            message.save(update_fields=["id_message", "is_sent"])
+        except (Unauthorized, BadRequest):
+            continue
+        if messages_sent > 5:
+            time.sleep(300)
+            messages_sent = 0
 
 
 @celery_app.task()

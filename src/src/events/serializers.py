@@ -29,7 +29,8 @@ class EventSerializer(serializers.Serializer):
         method_name="rule_description",
     )
     IncidentID = serializers.CharField()
-    user_info = serializers.SerializerMethodField(
+    # user_info = serializers.CharField()
+    user_info_data = serializers.SerializerMethodField(
         method_name="user_info",
     )
 

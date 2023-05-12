@@ -49,5 +49,5 @@ class Command(BaseCommand):
             crontab=every_five_min_cron,
             name="Создание рассылки",
             task="src.events.tasks.send_events",
-            queue="default",
+            # queue="default",
         )
