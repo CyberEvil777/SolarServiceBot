@@ -6,7 +6,7 @@ from src.events.models import EventMessage
 from src.events.serializers import EventListSerializer, EventSerializer
 
 # Opening JSON file
-file = open("src/events/wazuh_hight_level_alert_2.json")
+# file = open("src/events/wazuh_hight_level_alert_2.json")
 
 query = """{
    "query": {
@@ -19,7 +19,7 @@ query = """{
    }
  }'"""
 
-# file = ElasticSearchClient().get_elasticsearch_events(query=query)
+file = ElasticSearchClient().get_elasticsearch_events(query=query)
 
 
 wazuh_hight_level_alert = json.load(file)

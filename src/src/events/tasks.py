@@ -9,15 +9,14 @@ from src.bot.core.helpers import install
 from src.bot.core.telegram import bot
 from src.bot.modules.view_message.keyboards import get_keyboard_message
 from src.core.mail import mail_send
-from src.events.client import ElasticSearchClient
-# from src.events.logic import load_events, wazuh_hight_serializer
+from src.events.logic import load_events, wazuh_hight_serializer
 from src.events.models import EventMessage, Feature
 
 
 @celery_app.task()
 def send_events() -> None:
     """Создание голосования"""
-    # load_events(wazuh_hight_serializer)
+    load_events(wazuh_hight_serializer)
     messages = EventMessage.objects.filter(is_sent=False)
     messages_sent = 0
     for message in messages:
