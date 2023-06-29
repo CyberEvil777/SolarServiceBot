@@ -24,7 +24,7 @@ class Command(BaseCommand):
         PackagesLoader().load_packages(
             f"src.bot.modules.{item}"
             for item in [
-                "view_message",
+                "view_message", "web_app"
             ]
         )
 

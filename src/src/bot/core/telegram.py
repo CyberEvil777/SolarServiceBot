@@ -25,16 +25,16 @@ REQUEST_KWARGS = {
 }
 bot: Bot = Bot(
     token=settings.BOT_TOKEN,
-    request=Request(
-        con_pool_size=8,
-        proxy_url="socks5://185.61.38.128:1080/",
-        urllib3_proxy_kwargs={
-            "assert_hostname": "False",
-            "cert_reqs": "CERT_NONE"
-            # 'username': 'user',
-            # 'password': 'password'
-        },
-    ),
+    # request=Request(
+    #     con_pool_size=8,
+    #     proxy_url="socks5://31.172.67.97:443/",
+    #     urllib3_proxy_kwargs={
+    #         "assert_hostname": "False",
+    #         "cert_reqs": "CERT_NONE"
+    #         # 'username': 'user',
+    #         # 'password': 'password'
+    #     },
+    # ),
 )
 updater: SingletonUpdater = SingletonUpdater(bot=bot, request_kwargs=REQUEST_KWARGS)
 dp: Dispatcher = updater.dispatcher

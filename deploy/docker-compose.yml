@@ -12,12 +12,12 @@ services:
     expose:
       - 80
     environment:
-      - SQL_ENGINE=django.db.backends.postgresql
-      - POSTGRES_DB=solar_bot
-      - POSTGRES_USER=solar_bot
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+#      - SQL_ENGINE=django.db.backends.postgresql
+#      - POSTGRES_DB=solar_bot
+#      - POSTGRES_USER=solar_bot
+#      - POSTGRES_PASSWORD=password
+#      - POSTGRES_HOST=db
+#      - POSTGRES_PORT=5432
       - SECRET_KEY=the-most-secret
     ports:
       - "81:8001"
@@ -42,26 +42,26 @@ services:
       dockerfile: ./deploy/app.Dockerfile
     command: python manage.py bot_polling
     environment:
-      - SQL_ENGINE=django.db.backends.postgresql
-      - POSTGRES_DB=solar_bot
-      - POSTGRES_USER=solar_bot
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+#      - SQL_ENGINE=django.db.backends.postgresql
+#      - POSTGRES_DB=solar_bot
+#      - POSTGRES_USER=solar_bot
+#      - POSTGRES_PASSWORD=password
+#      - POSTGRES_HOST=db
+#      - POSTGRES_PORT=5432
       - BOT_TOKEN=6099478249:AAFuE2TexFO9nt1M1tKnLrnmhRTtlWeABxM
 
   # Redis
   redis:
     image: redis:5-alpine
     ports:
-      - "6379:6379"
+      - "6378:6378"
 
   # Celery worker
   worker:
     build:
       context: ..
       dockerfile: ./deploy/app.Dockerfile
-    command: celery -A src.src worker --beat --loglevel=INFO -Q default
+    command: bash -c "cd src" && celery -A src worker --beat --loglevel=INFO -Q default
     volumes:
       - .:/code:Z
     links:
@@ -75,7 +75,7 @@ services:
     build:
       context: ..
       dockerfile: ./deploy/app.Dockerfile
-    command: celery -A src.src beat --loglevel=INFO
+    command: bash -c "cd src" && celery -A src beat --loglevel=INFO
     volumes:
       - .:/code:Z
     links:
@@ -83,6 +83,7 @@ services:
       - redis
     depends_on:
       - redis
+
 
 
 volumes:

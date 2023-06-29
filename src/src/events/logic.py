@@ -19,23 +19,26 @@ query = """{
    }
  }'"""
 
-file = ElasticSearchClient().get_elasticsearch_events(query=query)
+# file = ElasticSearchClient().get_elasticsearch_events(query=query)
+#
+#
+# wazuh_hight_level_alert = json.load(file)
 
-
-wazuh_hight_level_alert = json.load(file)
-wazuh_hight_serializer = EventSerializer(wazuh_hight_level_alert, many=True)
-
-wazuh_hight_serializer = EventSerializer(
-    list(
-        map(
-            lambda x: x.get("_source"),
-            EventListSerializer(
-                wazuh_hight_level_alert.get("hits").get("hits"), many=True
-            ).data,
-        )
-    ),
-    many=True,
-).data
+# wazuh_hight_level_alert = ElasticSearchClient().get_elasticsearch_events(query=query)
+#
+# wazuh_hight_serializer = EventSerializer(wazuh_hight_level_alert, many=True)
+#
+# wazuh_hight_serializer = EventSerializer(
+#     list(
+#         map(
+#             lambda x: x.get("_source"),
+#             EventListSerializer(
+#                 wazuh_hight_level_alert.get("hits").get("hits"), many=True
+#             ).data,
+#         )
+#     ),
+#     many=True,
+# ).data
 
 
 def filter_events(raw_wazuh_hight_level_alerts):

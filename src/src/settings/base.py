@@ -140,7 +140,7 @@ STATIC_ROOT = os.path.join(SOURCES_ROOT, "static")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "1946256696:AAEitJpw_fZMvSSukOyVCAZ3E_Z2GQGHEsE")
+BOT_TOKEN = config("BOT_TOKEN", default="6099478249:AAFuE2TexFO9nt1M1tKnLrnmhRTtlWeABxM")
 
 # CORS_ORIGIN_WHITELIST = [
 #     "http://localhost:3000",

@@ -7,8 +7,10 @@ from telegram.ext import (CallbackContext, CommandHandler, Filters,
 from src.bot.core.helpers import get_or_create_user
 from src.bot.core.telegram import dp
 from src.events.models import EventMessage
-from src.goods.models import Goods
-from src.order.models import Order
+# from src.goods.models import Goods
+# from src.order.models import Order
+
+from src.events.tasks import send_events
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -57,7 +59,8 @@ def open_web_app(update: Update, context: CallbackContext) -> None:
 
 
 def check_id(update: Update, context: CallbackContext) -> None:
-    update.effective_chat.send_message("helllo")
+    update.effective_chat.send_message("Проверка новых инцидентов")
+    send_events()
     print(update.effective_chat.id)
 
 

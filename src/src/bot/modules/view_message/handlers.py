@@ -5,7 +5,7 @@ from telegram.ext import CallbackQueryHandler, ContextTypes
 
 from src.bot.core.telegram import dp
 from src.bot.modules.view_message.keyboards import get_keyboard_message
-from src.events.logic import load_events, wazuh_hight_serializer
+# from src.events.logic import load_events, wazuh_hight_serializer
 from src.events.models import EventMessage
 from src.events.tasks import load_script
 
@@ -15,8 +15,8 @@ def show_message(update: Update, context: ContextTypes) -> None:
     message_id = update.callback_query.message.message_id
     messages = EventMessage.objects.filter(id_message=message_id)
     message = messages.first()
-    print(wazuh_hight_serializer)
-    load_events(wazuh_hight_serializer)  # дает события с файла
+    # print(wazuh_hight_serializer)
+    # load_events(wazuh_hight_serializer)  # дает события с файла
     if getattr(message, "is_full"):
         update.callback_query.message.edit_text(
             text=inspect.cleandoc(message.short_text),

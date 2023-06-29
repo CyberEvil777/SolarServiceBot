@@ -30,7 +30,7 @@ class ElasticSearchClient:
             # j = json.loads(response.text)
             return response.json()
         except:
-            return "Error"
+            return {}
 
 
 class WriteAlert:
